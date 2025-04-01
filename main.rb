@@ -18,29 +18,39 @@ input = STDIN.gets.to_s
 good_answers = 0
 minutes = 8
 timeout_seconds = minutes * 60
+count = 1
+
 begin 
     Timeout.timeout(timeout_seconds) do
     
 
 
-count = 1
+
 while count <= 12 do
     content = question(count)
     puts content
+    puts
+    puts "Введите ваш вариант ответа или несколько вариантов 
+    через запятую(\"а, б\") или ноль(0), если ввы считаете, что
+    все варианты неправильные"
+    puts
     input = STDIN.gets.chomp
-    p input
     
-    answers_input = input_user(count, input, good_answers)
+    
+    
 
     good_answers = input_user(count, input, good_answers)
 
     count += 1
-    p good_answers
+
 end
 end 
 rescue Timeout::Error
     puts "Превышен лимит времени"
     
+    
 end
 
-puts good_answers
+puts " Ваш результат:#{good_answers}"
+
+ result = print_result(good_answers)
