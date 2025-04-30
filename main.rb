@@ -36,12 +36,15 @@ while count <= 12 do
     puts
     input = STDIN.gets.chomp
 
-    arr = ["а", "б", "в", "г", "0"]
+    arr = ["а", "б", "в", "г", "д", "е", "0"]
 
-    until arr.include?(input) do
-      puts "Не корректный ввод. Введите ваш вариант ответа буквами (а, б, в, г) или цифрой \"0\""
-      input = STDIN.gets.chomp
-    end
+answers = input.split(",").map { |char| char.strip.downcase }
+
+until answers.all? { |char| arr.include?(char) }
+  puts "Ошибка! Допустимы: а, б, в, г, д, е или 0."
+  input = STDIN.gets.chomp
+  answers = input.split(",").map { |char| char.strip.downcase }
+end
 
     good_answers = input_user(count, input, good_answers)
 
