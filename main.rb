@@ -14,19 +14,21 @@ puts "Необходимо определить формальную прави�
 puts "На нижеследующие 12 заданий отводится 8 минут! Поехали?:\n
 Нажмите любую кнопку, чтобы продолжить"
 
-input = STDIN.gets.to_s
+input = STDIN.gets.to_s #спрашиваем у пользователя ответ
 good_answers = 0
 minutes = 8
 timeout_seconds = minutes * 60
 count = 1
 
 begin 
-    Timeout.timeout(timeout_seconds) do
+    Timeout.timeout(timeout_seconds) do 
+        #метод для ограничения времени на прохождение
+        #теста
     
 
 
 
-while count <= 12 do
+while count <= 12 do #цикл задаёт вопрос нужное количеств раз
     content = question(count)
     puts content
     puts
@@ -38,15 +40,19 @@ while count <= 12 do
 
     arr = ["а", "б", "в", "г", "д", "е", "0"]
 
-answers = input.split(",").map { |char| char.strip.downcase }
+answers = input.split(",").map { |char| char.strip.downcase }#разбиваем ввод на массив срок
 
-until answers.all? { |char| arr.include?(char) }
+until answers.all? { |char| arr.include?(char) } 
+  #проверяем ответ на наличие в нём нужных элементов 
+  #из ввода пользователя
   puts "Ошибка! Допустимы: а, б, в, г, д, е или 0."
   input = STDIN.gets.chomp
   answers = input.split(",").map { |char| char.strip.downcase }
+    #разбиваем ввод на массив строк, убираем пробелы, приводим к нижнему регистру
 end
 
-    good_answers = input_user(count, input, good_answers)
+    good_answers = input_user(count, input, good_answers) 
+      #добовляем правильные ответы
 
     count += 1
 

@@ -1,13 +1,17 @@
 def question(number)
   current_path = File.dirname(__FILE__)
   file_question = File.join(current_path, "text#{number}.txt")
+  #прописываем путь к файлу .join универсальный метод 
+  #для объединения частей пути к файлу в правильном формате 
+  #для операционной системы
 
-  unless File.exist?(file_question)
+  unless File.exist?(file_question) #проверка на существование файла
     puts "Файл не найден, обратитесь к разработчику"
     return nil  # важно возвращать nil при отсутствии файла
   end
 
-  File.read(file_question, encoding: 'UTF-8')
+  File.read(file_question, encoding: 'UTF-8') # читаем файл методом read и 
+  #сразу закрываем
 rescue => e
   puts "Произошла ошибка при чтении файла: #{e.message}"
   nil
@@ -19,24 +23,32 @@ def input_user(count, input, good_answers)
   file_answers = File.join(current_path, 'answers.txt')
 
  if File.exist?(file_answers)
-  answers = File.new(file_answers, 'r:UTF-8')
+  answers = File.new(file_answers, 'r:UTF-8') #открываем файл в переменную
 
-  arr_answers = answers.readlines.map(&:strip)
+  arr_answers = answers.readlines.map(&:strip) #читаем файл массивом строк 
+  #и применяем методом map метод strip 
+  #отсекающий пробелы и символы переноса строки 
+  #к каждому элементу массива
   answers.close
+  # закрываем файл
 
  else
   puts "Файл не найден, обратитесь к разработчику"
  end
   
- if arr_answers[count - 1] == input.strip
+ if arr_answers[count - 1] == input.strip 
+  #проверка на ссответствия 
+  #вопроса правильному ответу
   good_answers += 1
  else
   good_answers
  end
 end
 
-def print_result(count)
-  case count 
+def print_result(good_answers) 
+  # выводим результат в соответствии с количеством
+  #правильных ответов
+  case good_answers 
   when 0..2
     puts "C логикой у вас очень слабо"
   when 3..6 
