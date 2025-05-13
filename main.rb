@@ -52,7 +52,7 @@ until answers.all? { |char| arr.include?(char) }
 end
 
     good_answers = input_user(count, input, good_answers) 
-      #добовляем правильные ответы
+      #добавляем правильные ответы
 
     count += 1
 
