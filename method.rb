@@ -1,9 +1,8 @@
 def question(number)
   current_path = File.dirname(__FILE__)
-  file_question = File.join(current_path, "text#{number}.txt")
-  #прописываем путь к файлу .join универсальный метод 
-  #для объединения частей пути к файлу в правильном формате 
-  #для операционной системы
+  file_question = File.join(current_path, "date", "text#{number}.txt")
+  #метод join для соединения частей пути для разных ОС
+  
 
   unless File.exist?(file_question) #проверка на существование файла
     puts "Файл не найден, обратитесь к разработчику"
@@ -20,7 +19,7 @@ end
 
 def input_user(count, input, good_answers)
   current_path = File.dirname(__FILE__)
-  file_answers = File.join(current_path, 'answers.txt')
+  file_answers = File.join(current_path, "date", "answers.txt")
 
  if File.exist?(file_answers)
   answers = File.new(file_answers, 'r:UTF-8') #открываем файл в переменную
